@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.psu.catalogservice.dto.ProductRequest;
 import ru.psu.catalogservice.dto.ProductResponse;
+import ru.psu.catalogservice.dto.StockReduceRequest;
 import ru.psu.catalogservice.service.ProductService;
 
 import java.util.List;
@@ -47,5 +48,11 @@ public class ProductController {
     public ResponseEntity<ProductResponse> deleteProduct(@PathVariable("id") Long id) {
         productService.deleteProduct(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @PostMapping("/reduce-stock")
+    public ResponseEntity<Void> reduceStock(@RequestBody List<StockReduceRequest> items) {
+        productService.reduceStock(items);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }
