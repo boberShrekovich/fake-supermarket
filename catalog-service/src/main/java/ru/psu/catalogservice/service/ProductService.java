@@ -6,6 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 import ru.psu.catalogservice.dto.ProductRequest;
 import ru.psu.catalogservice.dto.ProductResponse;
+import ru.psu.catalogservice.dto.StockReduceRequest;
 import ru.psu.catalogservice.entity.ProductEntity;
 import ru.psu.catalogservice.repository.ProductRepository;
 
@@ -109,5 +110,31 @@ public class ProductService {
         dto.setManufactureDate(entity.getManufactureDate());
         dto.setExpirationDays(entity.getExpirationDays());
         return dto;
+    }
+
+    @Transactional
+    public void reduceStock(List<StockReduceRequest> items) {
+        for (StockReduceRequest item : items) {
+            Optional<ProductEntity> optionalProduct = productRepository.findById(item.getProductId());
+
+            if (optionalProduct.isEmpty()) {
+                throw new ResponseStatusException(
+                        HttpStatus.NOT_FOUND,
+                        "Товар с ID " + item.getProductId() + " не найден"
+                );
+            }
+
+            ProductEntity product = optionalProduct.get();
+
+            if (product.getQuantity() < item.getQuantity()) {
+                throw new ResponseStatusException(
+                        HttpStatus.BAD_REQUEST,
+                        "Недостаточно товара '" + product.getName() + "'"
+                );
+            }
+
+            product.setQuantity(product.getQuantity() - item.getQuantity());
+            productRepository.save(product);
+        }
     }
 }
