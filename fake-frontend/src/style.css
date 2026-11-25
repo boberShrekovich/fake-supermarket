@@ -1,0 +1,191 @@
+/*
+:root { --primary: #2563eb; --danger: #dc2626; --bg: #f8fafc; --card: #ffffff; }
+        body { font-family: system-ui, -apple-system, sans-serif; margin: 0; background: var(--bg); color: #1e293b; }
+        
+        header { background: var(--card); padding: 1rem 2rem; box-shadow: 0 1px 3px rgba(0,0,0,0.1); display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 10; }
+        .logo { font-weight: bold; font-size: 1.25rem; color: var(--primary); text-decoration: none; }
+        nav { display: flex; gap: 1rem; align-items: center; }
+        nav a { text-decoration: none; color: #475569; font-weight: 500; }
+        nav a:hover { color: var(--primary); }
+        .badge { background: var(--primary); color: white; padding: 2px 6px; border-radius: 99px; font-size: 0.75rem; }
+        
+        main { max-width: 1100px; margin: 2rem auto; padding: 0 1rem; }
+        button { background: var(--primary); color: white; border: none; padding: 0.5rem 1rem; border-radius: 6px; cursor: pointer; font-size: 0.9rem; }
+        button:hover { opacity: 0.9; }
+        button:disabled { background: #94a3b8; cursor: not-allowed; }
+        button.danger { background: var(--danger); }
+        button.outline { background: transparent; border: 1px solid #cbd5e1; color: #334155; }
+        
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1.5rem; }
+        .card { background: var(--card); border-radius: 8px; padding: 1rem; box-shadow: 0 1px 3px rgba(0,0,0,0.05); display: flex; flex-direction: column; justify-content: space-between; }
+        .card img { width: 100%; height: 160px; object-fit: cover; border-radius: 4px; background: #e2e8f0; }
+        .card h3 { margin: 0.75rem 0 0.25rem; font-size: 1.1rem; }
+        .meta { font-size: 0.85rem; color: #64748b; margin-bottom: 0.75rem; line-height: 1.4; }
+        .price { font-size: 1.2rem; font-weight: bold; margin-bottom: 0.75rem; }
+        
+        .form-box { max-width: 400px; margin: 2rem auto; background: var(--card); padding: 2rem; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+        .form-group { margin-bottom: 1rem; }
+        .form-group label { display: block; margin-bottom: 0.25rem; font-size: 0.9rem; font-weight: 500; }
+        .form-group input { width: 100%; padding: 0.5rem; border: 1px solid #cbd5e1; border-radius: 4px; box-sizing: border-box; }
+        table { width: 100%; border-collapse: collapse; background: var(--card); border-radius: 8px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+        th, td { padding: 0.75rem 1rem; text-align: left; border-bottom: 1px solid #e2e8f0; }
+        th { background: #f1f5f9; }
+        .order-card { background: var(--card); padding: 1rem; border-radius: 8px; margin-bottom: 1rem; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+        .order-header { display: flex; justify-content: space-between; cursor: pointer; font-weight: 500; }
+        .order-details { display: none; margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #e2e8f0; }
+        .order-details.open { display: block; }
+
+*/
+
+
+/* Базовый каркас без лишних украшений */
+body {
+    font-family: Arial, sans-serif;
+    max-width: 960px;
+    margin: 20px auto;
+    padding: 0 15px;
+    background: #ffffff;
+    color: #000000;
+}
+
+/* Шапка */
+header {
+    border: 1px solid #999;
+    background: #f2f2f2;
+    padding: 10px 15px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-weight: bold;
+    font-size: 18px;
+    text-decoration: none;
+    color: #000;
+}
+
+nav {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+nav a {
+    color: #0000ee;
+}
+
+.badge {
+    font-weight: bold;
+}
+
+/* Сетка каталога */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+}
+
+.card {
+    border: 1px solid #999;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border: 1px solid #ccc;
+}
+
+.card h3 {
+    margin: 10px 0 5px;
+}
+
+.meta {
+    font-size: 13px;
+    color: #444;
+    margin-bottom: 10px;
+}
+
+.price {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+/* Стандартные кнопки */
+button {
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+/* Формы */
+.form-box {
+    max-width: 380px;
+    margin: 20px auto;
+    border: 1px solid #999;
+    padding: 15px;
+    background: #fafafa;
+}
+
+.form-group {
+    margin-bottom: 10px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 3px;
+    font-size: 14px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 5px;
+    box-sizing: border-box;
+}
+
+/* Таблицы (корзина, заказы, админка) */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 15px;
+}
+
+th, td {
+    border: 1px solid #999;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background: #eeeeee;
+}
+
+/* Карточка заказа */
+.order-card {
+    border: 1px solid #999;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.order-header {
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+}
+
+.order-details {
+    display: none;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px dashed #999;
+}
+
+.order-details.open {
+    display: block;
+}
